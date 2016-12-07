@@ -1,5 +1,5 @@
 {
-  "name": "mocha-chai setup",
+  "name": "tests",
   "version": "1.0.0",
   "description": "Setup basic environment for unit testing",
   "main": "index.js",
