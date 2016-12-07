@@ -1,7 +1,7 @@
 {
-  "name": "tests",
+  "name": "mocha-chai setup",
   "version": "1.0.0",
-  "description": "",
+  "description": "Setup basic environment for unit testing",
   "main": "index.js",
   "scripts": {
     "test": "mocha --compilers js:babel-core/register --recursive tests/"
