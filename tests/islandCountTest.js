@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import islandCount from '../src/islandCount';
 
-describe('islandCount', () => {
+describe('Island Count', () => {
   var matrix;
   beforeEach(() => {
     matrix = [
