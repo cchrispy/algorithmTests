@@ -21,9 +21,9 @@ describe('Find a Dupe', () => {
   });
 
   it('Should not mutate the original array', () => {
-    var array = [1, 1, 1];
+    var array = [1, 5, 2, 3, 7, 2, 1, 1];
     findADupe(array);
-    expect(array).to.eql([1, 1, 1]);
+    expect(array).to.eql([1, 5, 2, 3, 7, 2, 1, 1]);
   });
 
   describe('Test cases', () => {

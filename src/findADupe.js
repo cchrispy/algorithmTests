@@ -10,7 +10,7 @@
 **        EXAMPLE
 **        var list = [4, 1, 5, 2, 1, 2];
 **        
-**        myFunction(list); // return either 1 or 2
+**        findADupe(list); // return either 1 or 2
 */
 
 var findADupe = array => {
@@ -26,6 +26,26 @@ var findADupe = array => {
   **    store[array[i]] = true;
   **  }
   ************************************************************/
+
+  /* O(1) space and O(n) time solution with mutation         */
+  /************************************************************
+  **  array.sort((a, b) => a - b);
+  **  for (var i = 1; i < array.length; i++) {
+  **    if (array[i] === array[i - 1]) {
+  **      return array[i];
+  **    }
+  **  }
+  ************************************************************/
+
+  /* O(1) space and O(n^2) time solution without mutation    */
+  /************************************************************
+  **  for (var i = 0; i < array.length; i++) {
+  **    if (i !== array.lastIndexOf(array[i])) {
+  **      return array[i];
+  **    }
+  **  }
+  ************************************************************/
+
   
 
 };
