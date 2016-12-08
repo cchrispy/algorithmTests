@@ -49,7 +49,7 @@ describe('Find a Dupe', () => {
     });
 
     it('Case 6', () => {
-      expect(findADupe([5, 2, 3, 3, 5, 1])).to.equal(5);
+      expect(findADupe([5, 2, 3, 3, 5, 1])).to.be.oneOf([3, 5]);
     });
 
     it('Case 7', () => {

@@ -17,7 +17,17 @@ var findADupe = array => {
   // return null for invalid arguments
   if (!Array.isArray(array) || !array.length) { return null };
 
+  /* O(n) space complexity and O(n) time complexity solution */
+  /************************************************************
+  **  var store = {};
+  **
+  **  for (var i = 0; i < array.length; i++) {
+  **    if (store[array[i]]) { return array[i]; }
+  **    store[array[i]] = true;
+  **  }
+  ************************************************************/
   
+
 };
 
 export default findADupe;
