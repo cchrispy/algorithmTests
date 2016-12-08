@@ -27,7 +27,7 @@ var findADupe = array => {
   **  }
   ************************************************************/
 
-  /* O(1) space and O(n) time solution with mutation         */
+  /* O(1) space and O(n log n) time solution with mutation         */
   /************************************************************
   **  array.sort((a, b) => a - b);
   **  for (var i = 1; i < array.length; i++) {
@@ -46,7 +46,44 @@ var findADupe = array => {
   **  }
   ************************************************************/
 
-  
+  var N = array.length;
+  // Split on N and check how many elements are less than or greater than N/2 O(log n)
+  // Each split requires 1 loop through to count O(n)
+  // Overall O(n log n) time complexity, constant space, no mutation
+
+  var result;
+
+  function splitN(low, high) {
+    if (result) { return; } // exit function if a dupe is already found
+
+    var split = Math.floor((low + high) / 2); // halfway point
+
+    if (split === low) { // base case if low and high are consecutive
+      var count = 0;
+      array.forEach(num => {
+        if (num === split) {
+          count++;
+        }
+      })
+      result = count > 1 ? low : high;
+    } else {
+      var count = 0;
+      array.forEach(num => {
+        if (num >= low && num <= split) {
+          count++;
+        }
+      })
+      if (count > split - low + 1) {
+        splitN(low, split);
+      } else {
+        splitN(split + 1, high);
+      }
+    }
+  }
+
+  splitN(1, N);
+
+  return result;
 
 };
 
