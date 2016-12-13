@@ -9,13 +9,12 @@
 class MinHeap {
   constructor() {
     this._storage = [];
-    this._size = 0;
+    this._size = 1;
   }
 
   insert(n) {
-    console.log('I AM INSERTING WITH THIS SIZE: ', this._size);
-    if (!this._size) {
-      this._storage[0] = n;
+    if (this._size === 1) {
+      this._storage[1] = n;
     } else {
       this._storage[this._size] = n;
       this.bubbleUp(this._size);
@@ -24,17 +23,22 @@ class MinHeap {
   }
 
   extractMin() {
-    if (!this._storage.length) {
+    if (this._size === 1) {
       return null;
     }
-
-    var val = this._storage[0];
-
-    return val;
+    if (this._size === 2) {
+      this._size--;
+      return this._storage.pop();
+    }
+    var minimum = this._storage[1];
+    this._storage[1] = this._storage.pop();
+    this._size--;
+    this.sinkDown(1);
+    return minimum;
   }
 
   bubbleUp(index) {
-    if (index === 0) {
+    if (index === 1) {
       return this._storage[index];
     }
     var parent = Math.floor(index/2);
@@ -49,7 +53,27 @@ class MinHeap {
   }
 
   sinkDown(index) {
-
+    if (index >= this._size) {
+      return index;
+    }
+    var left  = 2 * index;
+    var right = 2 * index + 1;
+    var smaller = this._storage[left] <= this._storage[right] ? left  : right;
+    var larger  = this._storage[left] <= this._storage[right] ? right : left;
+    if (this._storage[smaller] !== undefined && 
+        this._storage[index] > this._storage[smaller]) {
+      var temp = this._storage[index];
+      this._storage[index] = this._storage[smaller];
+      this._storage[smaller] = temp;
+      return this.sinkDown(smaller);
+    } else if (this._storage[larger] !== undefined && 
+               this._storage[index] > this._storage[larger]) {
+      var temp = this._storage[index];
+      this._storage[index] = this._storage[larger];
+      this._storage[larger] = temp;
+      return this.sinkDown(larger);
+    }
+    return index;
   }
 
 }
