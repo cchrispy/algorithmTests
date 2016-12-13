@@ -17,6 +17,31 @@ describe('Triplet Sums', () => {
 
   it('Should return an array', () => {
     expect(tripletSums([10, 20, 30, 40], 30)).to.be.an('array');
-  })
+  });
+
+  it('Should not mutate the original array', () => {
+    var array = [10, 20, 30, 40, 50];
+    var arrayCopy = array.slice();
+    tripletSums(array, 50);
+    expect(array).to.deep.equal(arrayCopy);
+  });
+
+  describe('Test cases', () => {
+
+    it('tripletSums([10, 20, 30, 40, 50], 50)', () => {
+
+      var results = tripletSums([50, 20, 30, 40, 10], 90);
+      var answers = [[10, 40, 50], 
+                     [20, 30, 40], 
+                     [20, 40, 50], 
+                     [30, 40, 50]];
+      answers.forEach(answer => {
+        expect(results).to.deep.include.members([answer]);
+      });
+
+    });
+
+  });
+
 
 });
