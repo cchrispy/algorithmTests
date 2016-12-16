@@ -1,15 +1,24 @@
 // Implement a trie (aka "prefix tree") data structure
+// Optimize for space as much as possible
 
 class Trie {
   construtor() {
     this.val = '';
-    this.children = [];
+    this.children = {};
   }
 
   addWord(string) {
     // Iterate through the letters and check if they exist in the trie
     // Add new letters to the existing prefix as new nodes
 
+    var prev = this.children;
+
+    for (var i = 0; i < string.length; i++) {
+
+      var letter = new Node(string[i]);
+
+
+    } 
   }
 
   removeWord(string) {
@@ -38,8 +47,9 @@ class Trie {
 class Node {
   constructor(val) {
     // Each node holds one letter
+    // The children will be an object that holds references to other nodes
     this.val = val;
-    this.children = [];
+    this.children = {};
   }
 }
 
