@@ -11,12 +11,16 @@ class Trie {
     // Iterate through the letters and check if they exist in the trie
     // Add new letters to the existing prefix as new nodes
 
-    var prev = this.children;
+    var cur = this;
 
     for (var i = 0; i < string.length; i++) {
 
-      var letter = new Node(string[i]);
+      var letter = string[i];
+      var node = new Node(letter);
 
+      if (!this.children[letter]) {
+        this.children[letter] = node;
+      }
 
     } 
   }
@@ -40,6 +44,11 @@ class Trie {
     var predictions = [];
 
     return predictions;
+  }
+
+  removePrefix(prefix) { // implement after everything else is done!
+    // Remove all words with a given prefix
+
   }
 
 }
