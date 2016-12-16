@@ -1,5 +1,4 @@
 // Implement a trie (aka "prefix tree") data structure
-// 
 
 class Trie {
   construtor() {
@@ -17,6 +16,12 @@ class Trie {
 
   isMember(string) {
     return false;
+  }
+
+  predict(prefix) {
+    var predictions = [];
+
+    return predictions;
   }
 
 }
