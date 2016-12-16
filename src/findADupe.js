@@ -27,7 +27,7 @@ var findADupe = array => {
   **  }
   ************************************************************/
 
-  /* O(1) space and O(n log n) time solution with mutation         */
+  /* O(1) space and O(n log n) time solution with mutation   */
   /************************************************************
   **  array.sort((a, b) => a - b);
   **  for (var i = 1; i < array.length; i++) {
