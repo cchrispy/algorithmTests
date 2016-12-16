@@ -2,7 +2,7 @@
 // Optimize for space as much as possible
 
 class Trie {
-  construtor() {
+  constructor() {
     this.val = '';
     this.children = {};
   }
@@ -11,18 +11,23 @@ class Trie {
     // Iterate through the letters and check if they exist in the trie
     // Add new letters to the existing prefix as new nodes
 
-    var cur = this;
+    var currentNode = this;
 
     for (var i = 0; i < string.length; i++) {
 
       var letter = string[i];
-      var node = new Node(letter);
 
-      if (!this.children[letter]) {
-        this.children[letter] = node;
+      console.log('CHILDREN: ', currentNode);
+
+      if (!currentNode.children[letter]) {
+        var node = new Node(letter);
+        currentNode.children[letter] = node;
+        currentNode = node;
+      } else {
+        currentNode = currentNode.children[letter];
       }
-
-    } 
+    }
+    return true;
   }
 
   removeWord(string) {
