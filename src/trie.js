@@ -120,9 +120,10 @@ class Trie {
 
       if (i === prefix.length - 1) {
         delete currentNode.children[letter];
+        currentNode.branches--;
+      } else {
+        currentNode = currentNode.children[letter];
       }
-      
-      currentNode = currentNode.children[letter];
 
     }
 

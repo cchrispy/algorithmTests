@@ -229,17 +229,19 @@ describe('Trie (prefix tree)', () => {
     trie.addWord('hellish');
     trie.addWord('helltower');
 
+
     trie.removePrefix('helli');
     trie.removePrefix('helltower');
 
     expect(trie.isMember('hell')).to.be.true;
     expect(trie.isMember('helli')).to.be.false;
     expect(trie.isMember('hellt')).to.be.true;
+    expect(trie.isMember('helltowe')).to.be.true;
     expect(trie.isMember('helltower')).to.be.false;
 
-    expect(trie.predict('h')).to.have.lengthOf(2);
+    expect(trie.predict('h')).to.have.lengthOf(2).and.have.members(['hello', 'helltowe']);
 
-  })
+  });
 
 
 });
