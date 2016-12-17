@@ -105,9 +105,28 @@ class Trie {
     return predictions;
   }
 
-  removePrefix(prefix) { // implement after everything else is done!
-    // Remove all words with a given prefix
+  removePrefix(prefix) { // TODO
+    // Remove all words with a given prefix, including the prefix itself
 
+    if (!this.isMember(prefix) || !prefix.length) { return false; }
+
+    var deletedWords = this.predict(prefix);
+
+    var currentNode = this;
+
+    for (var i = 0; i < prefix.length; i++) {
+
+      var letter = prefix[i];
+
+      if (i === prefix.length - 1) {
+        delete currentNode.children[letter];
+      }
+      
+      currentNode = currentNode.children[letter];
+
+    }
+
+    return deletedWords;
   }
 
   _gatherWords(node, string, res = [], context = this) {

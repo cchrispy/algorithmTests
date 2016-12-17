@@ -14,10 +14,12 @@ describe('Trie (prefix tree)', () => {
     expect(sampleTrie).to.be.an.instanceof(Trie);
   });
 
-  it('Supports "addWord", "removeWord", "isMember", "predict" methods', () => {
+  it('Supports "addWord", "removeWord", "isMember", "predict", "removePrefix" methods', () => {
     expect(sampleTrie.addWord).to.be.a('function');
     expect(sampleTrie.removeWord).to.be.a('function');
     expect(sampleTrie.isMember).to.be.a('function');
+    expect(sampleTrie.predict).to.be.a('function');
+    expect(sampleTrie.removePrefix).to.be.a('function');
   });
 
   it('"isMember" method should return a boolean', () => {
@@ -149,6 +151,93 @@ describe('Trie (prefix tree)', () => {
     expect(trie.predict('hh')).to.be.false;
     expect(trie.predict()).to.be.have.lengthOf(2);
     expect(trie.predict()).to.have.members(['hello', 'abc']);
+
+  });
+
+  it('"removePrefix" method should return false for invalid inputs and prefixes that do not exist', () => {
+
+    trie.addWord('hello');
+    trie.addWord('abc');
+
+    expect(trie.removePrefix()).to.be.false;
+    expect(trie.removePrefix('')).to.be.false;
+    expect(trie.removePrefix('ho')).to.be.false;
+    expect(trie.removePrefix('helo')).to.be.false;
+    expect(trie.removePrefix('abcd')).to.be.false;
+
+  });
+
+  it('"removePrefix" method should remove all words with a given prefix, including the prefix itself', () => {
+
+    trie.addWord('pregame');
+    trie.addWord('predict');
+    trie.addWord('prepare');
+    trie.addWord('preparation');
+    trie.addWord('program');
+    trie.addWord('progress');
+    trie.addWord('print');
+    trie.addWord('prime');
+    trie.addWord('prejudice');
+    trie.addWord('predecessor');
+    trie.addWord('predilection');
+
+    expect(trie.predict('')).to.have.lengthOf(11);
+
+    trie.removePrefix('prep');
+
+    expect(trie.isMember('prepare')).to.be.false;
+    expect(trie.isMember('preparation')).to.be.false;
+    expect(trie.isMember('prep')).to.be.false;
+    expect(trie.predict('')).to.have.lengthOf(9);
+
+    trie.removePrefix('pre');
+
+    expect(trie.isMember('pregame')).to.be.false;
+    expect(trie.isMember('predict')).to.be.false;
+    expect(trie.isMember('prejudice')).to.be.false;
+    expect(trie.isMember('predilection')).to.be.false;
+    expect(trie.predict('')).to.have.lengthOf(4);
+    expect(trie.predict('')).to.have.members(['program', 'progress', 'print', 'prime']);
+
+  });
+
+  it('"removePrefix" should return a list of removed words', () => {
+
+    trie.addWord('prepare');
+    trie.addWord('preparation');
+    trie.addWord('predecessor');
+    trie.addWord('predilection');
+    trie.addWord('pregame');
+    trie.addWord('predict');
+    trie.addWord('prejudice');
+    trie.addWord('program');
+    trie.addWord('progress');
+    trie.addWord('print');
+    trie.addWord('prime');
+    trie.addWord('a');
+
+    expect(trie.removePrefix('prep')).to.have.lengthOf(2).and.have.members(['prepare', 'preparation']);
+    expect(trie.removePrefix('pre')).to.have.lengthOf(5).and.have.members(['predecessor', 'predilection', 'pregame', 'predict', 'prejudice']);
+    expect(trie.predict('p')).to.have.lengthOf(4).and.have.members(['program', 'progress', 'print', 'prime']);
+    expect(trie.isMember('pre')).to.be.false;
+
+  });
+
+  it('"removePrefix" should work if the input is already a complete word', () => {
+
+    trie.addWord('hello');
+    trie.addWord('hellish');
+    trie.addWord('helltower');
+
+    trie.removePrefix('helli');
+    trie.removePrefix('helltower');
+
+    expect(trie.isMember('hell')).to.be.true;
+    expect(trie.isMember('helli')).to.be.false;
+    expect(trie.isMember('hellt')).to.be.true;
+    expect(trie.isMember('helltower')).to.be.false;
+
+    expect(trie.predict('h')).to.have.lengthOf(2);
 
   })
 
