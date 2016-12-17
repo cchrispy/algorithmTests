@@ -51,6 +51,28 @@ describe('Trie (prefix tree)', () => {
     expect(trie.removeWord('haha')).to.be.false;
     expect(trie.removeWord(true)).to.be.false;
 
+  });
+
+  it('"removeWord" method should return false for incomplete words', () => {
+
+    trie.addWord('abcdefg');
+    trie.addWord('abcxyz');
+
+    expect(trie.removeWord('abc')).to.be.false;
+    expect(trie.removeWord('abcdef')).to.be.false;
+
+    expect(trie.isMember('abcdefg')).to.be.true;
+    expect(trie.isMember('abcxyz')).to.be.true;
+
+    trie.removeWord('abcxyz');
+
+    expect(trie.isMember('abcxyz')).to.be.false;
+    expect(trie.isMember('abcdefg')).to.be.true;
+
+    trie.removeWord('abcdefg');
+
+    expect(trie.isMember('abc')).to.be.false;
+
   })
 
   it('"removeWord" method should leave prefixes intact if other words branch from it', () => {
@@ -117,6 +139,17 @@ describe('Trie (prefix tree)', () => {
     expect(predictions).to.have.lengthOf(5);
     expect(predictions).to.have.members(expectedWords);
   });
+
+  it('"predict" method should return false for prefixes that do not exist', () => {
+
+    trie.addWord('hello');
+
+    expect(trie.predict('hey')).to.be.false;
+    expect(trie.predict('helloo')).to.be.false;
+    expect(trie.predict()).to.be.false;
+    expect(trie.predict('hh')).to.be.false;
+
+  })
 
 
 });

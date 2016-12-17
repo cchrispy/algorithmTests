@@ -46,15 +46,15 @@ class Trie {
 
       var letter = string[i];
 
-      if (currentNode.branches > 2) {
+      if (currentNode.branches > 1) {
         mostRecentBranch = [currentNode, letter];
-      } else {
-        currentNode = currentNode.children[letter];
       }
+      currentNode = currentNode.children[letter];
     }
 
     if (currentNode.branches) {
       // if the input string does not end on a leaf in the tree (it's not a complete word)
+      // use removePrefix instead to remove all words with a given prefix
       return false;
     }
 
@@ -89,7 +89,18 @@ class Trie {
   predict(prefix) {
     // Iterate to the last letter/node
     // Record all complete branches of the node (down to the leaves)
+
+    if (!this.isMember(prefix)) { return false; }
+
     var predictions = [];
+
+    var currentNode = this;
+
+    for (var i = 0; i < prefix.length; i++) {
+      currentNode = currentNode.children[prefix[i]];
+    }
+
+    
 
     return predictions;
   }
