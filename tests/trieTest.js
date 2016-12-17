@@ -5,6 +5,11 @@ describe('Trie (prefix tree)', () => {
 
   var sampleTrie = new Trie();
 
+  var trie;
+  beforeEach(() => {
+    trie = new Trie();
+  })
+
   it('Should be a class', () => {
     expect(sampleTrie).to.be.an.instanceof(Trie);
   });
@@ -17,10 +22,38 @@ describe('Trie (prefix tree)', () => {
 
   it('"isMember" method should return a boolean', () => {
     expect(sampleTrie.isMember()).to.be.a('boolean');
+    expect(sampleTrie.isMember('a')).to.be.a('boolean');
   });
 
+  it('"isMember" method should return true for prefixes of added words, as well as full words', () => {
+
+    trie.addWord('applesauce');
+    trie.addWord('application');
+    trie.addWord('nonsense');
+    trie.addWord('ardenwood');
+
+    expect(trie.isMember('apple')).to.be.true;
+    expect(trie.isMember('application')).to.be.true;
+    expect(trie.isMember('applesauce')).to.be.true;
+    expect(trie.isMember('applesauces')).to.be.false;
+    expect(trie.isMember('noob')).to.be.false;
+    expect(trie.isMember()).to.be.false;
+
+  });
+
+  it('"removeWord" method should return false for invalid inputs', () => {
+
+    trie.addWord('program');
+    trie.addWord('progress');
+    trie.addWord('prowess');
+
+    expect(trie.removeWord()).to.be.false;
+    expect(trie.removeWord('haha')).to.be.false;
+    expect(trie.removeWord(true)).to.be.false;
+
+  })
+
   it('"removeWord" method should leave prefixes intact if other words branch from it', () => {
-    var trie = new Trie();
 
     trie.addWord('programmatic');
     trie.addWord('programmer');
@@ -44,7 +77,6 @@ describe('Trie (prefix tree)', () => {
   })
 
   it('"isMember" method should work for new words and deleted words and no words', () => {
-    var trie = new Trie();
 
     expect(trie.isMember('h')).to.be.false;
 
@@ -63,7 +95,7 @@ describe('Trie (prefix tree)', () => {
   });
 
   it('"predict" method should return a list of predictions with the inputted prefix', () => {
-    var trie = new Trie();
+
     trie.addWord('program');
     trie.addWord('programming');
     trie.addWord('poop');

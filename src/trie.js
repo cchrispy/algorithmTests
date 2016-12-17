@@ -4,6 +4,7 @@
 class Trie {
   constructor() {
     this.val = '';
+    this.branches = 0;
     this.children = {};
   }
 
@@ -17,11 +18,10 @@ class Trie {
 
       var letter = string[i];
 
-      console.log('CHILDREN: ', currentNode);
-
       if (!currentNode.children[letter]) {
         var node = new Node(letter);
         currentNode.children[letter] = node;
+        currentNode.branches++;
         currentNode = node;
       } else {
         currentNode = currentNode.children[letter];
@@ -32,15 +32,58 @@ class Trie {
 
   removeWord(string) {
     // Go through the trie until you hit a non-branching node
+      // Non-branching would mean there is only one child letter
     // Delete that to remove the word
     // Ensure that you do not delete prefixes that extend to other words
+    // If the input string is a substring of an existing word, don't delete it
+
+    if (!this.isMember(string)) { return false; }
+
+    var mostRecentBranch = [this, string[0]];
+    var currentNode = this;
+
+    for (var i = 0; i < string.length; i++) {
+
+      var letter = string[i];
+
+      if (currentNode.branches > 2) {
+        mostRecentBranch = [currentNode, letter];
+      } else {
+        currentNode = currentNode.children[letter];
+      }
+    }
+
+    if (currentNode.branches) {
+      // if the input string does not end on a leaf in the tree (it's not a complete word)
+      return false;
+    }
+
+    delete mostRecentBranch[0].children[mostRecentBranch[1]];
+    mostRecentBranch[0].branches--;
+
+    return string;
 
   }
 
   isMember(string) {
     // Verify if the word exists in the trie
     // Iterate through the letters and trace it in the trie
-    return false;
+
+    if (typeof string !== 'string') { return false; }
+
+    var currentNode = this;
+
+    for (var i = 0; i < string.length; i++) {
+
+      var letter = string[i];
+
+      if (!currentNode.children[letter]) {
+        return false;
+      } else {
+        currentNode = currentNode.children[letter];
+      }
+    }
+    return true;
   }
 
   predict(prefix) {
@@ -63,6 +106,7 @@ class Node {
     // Each node holds one letter
     // The children will be an object that holds references to other nodes
     this.val = val;
+    this.branches = 0;
     this.children = {};
   }
 }
