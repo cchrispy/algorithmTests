@@ -86,7 +86,7 @@ class Trie {
     return true;
   }
 
-  predict(prefix) {
+  predict(prefix = '') {
     // Iterate to the last letter/node
     // Record all complete branches of the node (down to the leaves)
 
@@ -100,13 +100,27 @@ class Trie {
       currentNode = currentNode.children[prefix[i]];
     }
 
-    
+    this._gatherWords(currentNode, prefix.slice(0, prefix.length - 1), predictions, this);
 
     return predictions;
   }
 
   removePrefix(prefix) { // implement after everything else is done!
     // Remove all words with a given prefix
+
+  }
+
+  _gatherWords(node, string, res = [], context = this) {
+
+    var word = string + node.val;
+
+    if (!node.branches) {
+      res.push(word);
+    } else {
+      for (var prop in node.children) {
+        context._gatherWords(node.children[prop], word, res, context);
+      }
+    }
 
   }
 

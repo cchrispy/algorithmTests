@@ -129,25 +129,26 @@ describe('Trie (prefix tree)', () => {
 
     var predictions = trie.predict('pro');
     var expectedWords = [
-                         'program', 
                          'programming', 
                          'programmer', 
                          'progamer', 
                          'profession'
                          ];
     expect(predictions).to.be.an('array');
-    expect(predictions).to.have.lengthOf(5);
+    expect(predictions).to.have.lengthOf(4);
     expect(predictions).to.have.members(expectedWords);
   });
 
   it('"predict" method should return false for prefixes that do not exist', () => {
 
     trie.addWord('hello');
+    trie.addWord('abc');
 
     expect(trie.predict('hey')).to.be.false;
     expect(trie.predict('helloo')).to.be.false;
-    expect(trie.predict()).to.be.false;
     expect(trie.predict('hh')).to.be.false;
+    expect(trie.predict()).to.be.have.lengthOf(2);
+    expect(trie.predict()).to.have.members(['hello', 'abc']);
 
   })
 
