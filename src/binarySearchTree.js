@@ -2,12 +2,17 @@
 
 class binarySearchTree {
   constructor(x) {
-    this.val = x;
+    this.val = x || null;
     this.left = null;
     this.right = null;
   }
 
   insert(x) {
+
+    if (this.val === null) {
+      this.val = x;
+      return true;
+    }
 
     if (x <= this.val) {
       if (this.left === null) {
@@ -22,6 +27,8 @@ class binarySearchTree {
         this.right.insert(x);
       }
     }
+
+    return true;
   }
 
   delete(x) {
@@ -33,3 +40,5 @@ class binarySearchTree {
   }
 
 }
+
+export default binarySearchTree;
