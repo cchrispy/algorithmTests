@@ -32,6 +32,10 @@ describe('Directed Graph', () => {
 
   });
 
+  xit('Edges to a node that was removed should be erased', () => {
+
+  });
+
   xit('Should return the appropriate connections for a given node/value', () => {
 
   });

@@ -46,7 +46,16 @@ class DirectedGraph {
   }
 
   getConnections(val) {
+    if (!this.nodes[val]) { return false; } // node does not exist
 
+    var res = [];
+    var node = this.nodes[val];
+
+    for (var prop in node.edges) {
+      res.push(node.edges[prop].val);
+    };
+
+    return res;
   }
 
 }
