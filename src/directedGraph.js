@@ -1,4 +1,4 @@
-// Implement a directed graph
+// Implement a directed graph (unidirectional pointers)
 // It is a collection of nodes that have edges between some of them
 // Directed edges point in one direction (undirected edges point both ways)
 
@@ -28,17 +28,25 @@ class DirectedGraph {
     if (!this.nodes[val]) { return false; } // node does not exist
 
     // all nodes that connect to this node must have the correpsonding edge removed
+    for (var prop in this.nodes) {
+      this.removeEdge(prop, val);
+    }
+    delete this.nodes[val];
 
     this.size--;
     return val;
   }
 
-  removeEdge(val1, val2) {
-    
+  removeEdge(fromVal, toVal) {
+    if (!this.nodes[fromVal] || !this.nodes[toVal]) { return false; } // nodes do not exist
+
+    var fromNode = this.nodes[fromVal];
+    delete fromNode.edges[toVal];
+    return true;
   }
 
   getConnections(val) {
-    
+
   }
 
 }
