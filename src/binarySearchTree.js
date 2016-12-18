@@ -9,7 +9,9 @@ class binarySearchTree {
 
   insert(x) {
 
-    if (this.val === null) {
+    if (x === undefined) { return false; }
+
+    if (this.val === null) { // Only for if the BST was instantiated without a value (null root value)
       this.val = x;
       return true;
     }
