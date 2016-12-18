@@ -2,24 +2,29 @@
 // It is a collection of nodes that have edges between some of them
 // Directed edges point in one direction (undirected edges point both ways)
 
-class directedGraph {
+class DirectedGraph {
   constructor() {
     this.nodes = {};
+    this.size = 0;
   }
 
   addNode(val) {
 
   }
 
-  addEdge(node1, node2) {
+  addEdge(val1, val2) {
 
   }
 
-  removeNode(node) {
+  removeNode(val) {
 
   }
 
-  removeEdge(node1, node2) {
+  removeEdge(val1, val2) {
+
+  }
+
+  getConnections(val) {
 
   }
 
@@ -30,3 +35,5 @@ class Node {
     this.val = val;
   }
 }
+
+export default DirectedGraph;
