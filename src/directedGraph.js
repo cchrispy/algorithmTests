@@ -18,7 +18,9 @@ class DirectedGraph {
   }
 
   addEdge(fromVal, toVal) {
-    if (!this.nodes[fromVal] || !this.nodes[toVal]) { return false; } // nodes do not exist
+    if (!this.nodes[fromVal] 
+        || !this.nodes[toVal] 
+        || fromVal === toVal) { return false; } // nodes do not exist or they are the same node
 
     var fromNode = this.nodes[fromVal];
     fromNode.edges[toVal] = this.nodes[toVal];
@@ -38,7 +40,9 @@ class DirectedGraph {
   }
 
   removeEdge(fromVal, toVal) {
-    if (!this.nodes[fromVal] || !this.nodes[toVal]) { return false; } // nodes do not exist
+    if (!this.nodes[fromVal] 
+        || !this.nodes[toVal] 
+        || fromVal === toVal) { return false; } // nodes do not exist or are the same nodes
 
     var fromNode = this.nodes[fromVal];
     delete fromNode.edges[toVal];
@@ -56,6 +60,10 @@ class DirectedGraph {
     };
 
     return res;
+  }
+
+  getSize() {
+    return this.size;
   }
 
 }
