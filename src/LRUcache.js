@@ -27,7 +27,6 @@ class LRUcache {
     if (this._size >= this.limit) { // remove the tail and the reference to the node
       var tail = this.list.tail();
       var removeKey = tail.data[0];
-      console.log('HEY THERE DUDE', removeKey);
       tail.remove();
       delete this.refs[removeKey];
       this._size--;
