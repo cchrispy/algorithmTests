@@ -29,8 +29,8 @@ var circularArrayLoop = arr => { // returns a boolean value
     arr[index] = 0;
     index += steps;
 
-    if (index >= arr.length) { index -= arr.length; }
-    if (index < 0) { index += arr.length; }
+    while (index >= arr.length) { index -= arr.length; }
+    while (index < 0) { index += arr.length; }
 
     if (prev === index) { return false; } // handles a loop with 1 element
 
