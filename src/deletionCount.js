@@ -9,6 +9,25 @@
 
 var deletionCount = (str1, str2) => {
 
+  var longer = str1.length >= str2.length ? str1 : str2;
+  var shorter = longer === str1 ? str2 : str1;
+
+  var text = '';
+
+  var lastIndex = -1;
+  for (var i = 0; i < longer.length; i++) {
+
+    var letter = longer[i];
+    var index = shorter.indexOf(letter);
+    if (index > lastIndex) {
+      text += letter;
+      lastIndex = index;
+    }
+
+  }
+
+  console.log(text);
+
 }
 
 export default deletionCount;
