@@ -27,6 +27,7 @@ var deletionCount = (str1, str2) => {
     answer = text.length > answer.length ? text : answer;
   }
   return str1.length + str2.length - answer.length - answer.length;
+}
 
 
 export default deletionCount;
