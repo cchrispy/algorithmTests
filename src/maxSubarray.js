@@ -1,4 +1,5 @@
 // Given an array, return the sum of the subarray that has the greatest sum
+// Constraints: O(n) time, O(1) space
 
 /*
 ** Example
