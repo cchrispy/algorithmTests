@@ -59,27 +59,8 @@ var fallingDisks = (well, disks) => {
     count++;
 
   }
+  
   return count;
-
-  // var count = 0;
-  // var index = well.length - 1;
-  // var disk = disks.shift();
-
-  // while (index >= 0 && disks.length > 0) {
-  //   for (var i = 0; i <= index; i++) {
-  //     var size = well[i];
-  //     if (size < disk) {
-  //       index -= (index - i + 1);
-  //     }
-  //   }
-  //   if (well[index] >= disk) {
-  //     disk = disks.shift();
-  //     index--;
-  //     count++;
-  //   }
-  // }
-
-  // return count;
 }
 
 export default fallingDisks;
