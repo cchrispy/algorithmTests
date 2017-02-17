@@ -15,7 +15,7 @@ describe('Falling Disks', () => {
 
     });
 
-    xit('Case 2', () => {
+    it('Case 2', () => {
 
       var well = [1, 2, 3];
       var disks = [1, 1, 1];
