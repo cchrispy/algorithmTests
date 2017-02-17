@@ -13,10 +13,14 @@
 
 // Write a function that will return the maximal product of any prefix of a given string
 //    prefixMaxProduct('abababa') === 10
+//        prefixMaxProduct('aaa') === 4
 // O(n) time and space complexity
 
 var prefixMaxProduct = str => {
 
-
+  for (var i = 0; i < str.length; i++) {
+    var len = i + 1;
+    
+  }
 
 }
