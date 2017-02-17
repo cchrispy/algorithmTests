@@ -33,25 +33,53 @@
 
 var fallingDisks = (well, disks) => {
 
-  var count = 0;
-  var index = well.length - 1;
-  var disk = disks.shift();
+  var index = well.length; // track which ring is the most recently filled
+  var count = 0;           // count the number of rings that have successfully fallen
 
-  while (index >= 0 && disks.length > 0) {
-    for (var i = 0; i <= index; i++) {
-      var size = well[i];
-      if (size < disk) {
-        index -= (index - i + 1);
-      }
+  // Loop through the disks until you reach the end of the array of disks
+  // or you reached the index of the ring that has been filled by a fallen disk (index)
+  for (var i = 0; i < disks.length && index > 0; i++) {
+
+    // start at the top of the well
+    var currentWell = 0;
+
+    // travel down the well until you reach a ring that isn't big enough
+    // or you reach a ring that has been filled with a fallen disk (index)
+    while (well[currentWell] >= disks[i] && currentWell < index) {
+      currentWell++;
     }
-    if (well[index] >= disk) {
-      disk = disks.shift();
-      index--;
-      count++;
-    }
+
+    // if the current well is 0, it means that the current disk can't fit the very first well
+    // so immediately return the count and exit the loop
+    if (!currentWell) { return count; }
+
+    // the ring has fallen to a certain ring; update the index to track the most recently filled ring
+    // and increment the count
+    index = currentWell - 1;
+    count++;
+
   }
-
   return count;
+
+  // var count = 0;
+  // var index = well.length - 1;
+  // var disk = disks.shift();
+
+  // while (index >= 0 && disks.length > 0) {
+  //   for (var i = 0; i <= index; i++) {
+  //     var size = well[i];
+  //     if (size < disk) {
+  //       index -= (index - i + 1);
+  //     }
+  //   }
+  //   if (well[index] >= disk) {
+  //     disk = disks.shift();
+  //     index--;
+  //     count++;
+  //   }
+  // }
+
+  // return count;
 }
 
 export default fallingDisks;
