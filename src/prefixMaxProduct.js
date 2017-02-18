@@ -24,3 +24,5 @@ var prefixMaxProduct = str => {
   }
 
 }
+
+export default prefixMaxProduct;
