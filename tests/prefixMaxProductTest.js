@@ -17,6 +17,7 @@ describe('Prefix Max Product', () => {
       expect(prefixMaxProduct('aaa')).to.equal(4);
     })
 
+
   })
 
 })

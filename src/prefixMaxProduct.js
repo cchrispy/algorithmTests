@@ -18,10 +18,19 @@
 
 var prefixMaxProduct = str => {
 
-  for (var i = 0; i < str.length; i++) {
-    var len = i + 1;
-    
+  var product = 0;
+  for (var i = 1; i <= str.length; i++) {
+    var prefix = str.slice(0, i);
+    var count = 0;
+    for (var j = 0; j < str.length - i + 1; j++) {
+      if (prefix === str.substr(j, i)) {
+        count++;
+      }
+    }
+    product = product > count * i ? product : count * i;
   }
+
+  return product;
 
 }
 
