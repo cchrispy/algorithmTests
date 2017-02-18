@@ -7,4 +7,16 @@ describe('Prefix Max Product', () => {
     expect(prefixMaxProduct).to.be.a('function');
   })
 
+  describe('Test cases', () => {
+
+    it('Case 1: abababa', () => {
+      expect(prefixMaxProduct('abababa')).to.equal(10);
+    })
+
+    it('Case 2: aaa', () => {
+      expect(prefixMaxProduct('aaa')).to.equal(4);
+    })
+
+  })
+
 })

@@ -1,7 +1,7 @@
 // A prefix of a string S is any substring of S that begins with the first letter of S.
 // For example 'a', 'ab', 'abc', 'abcd' are prefixes of 'abcd'.
 
-// The product of prefix P is the length of P multiplied by the number of occuranges of P in S.
+// The product of prefix P is the length of P multiplied by the number of occurrences of P in S.
 // For example, the string 'abababa' has 7 prefixes:
 //    "a", whose product equals 1 * 4 = 4,
 //    "ab", whose product equals 2 * 3 = 6,
