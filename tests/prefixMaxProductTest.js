@@ -17,6 +17,21 @@ describe('Prefix Max Product', () => {
       expect(prefixMaxProduct('aaa')).to.equal(4);
     })
 
+    it('Case 3: aa', () => {
+      expect(prefixMaxProduct('aa')).to.equal(2);
+    });
+
+    it('Case 4: abcd', () => {
+      expect(prefixMaxProduct('abcd')).to.equal(4);
+    })
+
+    it('Case 5: abcdefabcd', () => {
+      expect(prefixMaxProduct('abcdeabcd')).to.equal(9);
+    })
+
+    it('Case 6: abcabcabca', () => {
+      expect(prefixMaxProduct('abcabcabca')).to.equal(14);
+    })
 
   })
 
