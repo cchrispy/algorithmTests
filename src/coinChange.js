@@ -16,6 +16,11 @@ coinChange(10, [2, 3, 5, 6]); // 5
 
 var coinChange = (n, coins) => {
   var cache = {};
+
+  if (n === 0 || !coins.length) {
+    return 0;
+  }
+
   
 
 }
