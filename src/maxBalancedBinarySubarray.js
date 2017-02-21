@@ -8,13 +8,17 @@
 ** Input: [0, 1, 1, 1, 1, 0, 0, 1]
 ** Output: 4
 **
-** Input: [0, 1, 1, 1, 1, 0]
+** Input: [0, 1, 1, 1, 0]
 ** Output: 2
 */
 
 var maxBalancedBinarySubarray = arr => {
 
+  // Count the number of 0s and 1s by using the sum
+  var zeros = arr.length - sum(arr);
+  var ones = arr.length - zeros;
 
+  
 
 }
 
