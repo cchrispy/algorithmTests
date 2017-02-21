@@ -15,13 +15,29 @@
 var maxBalancedBinarySubarray = arr => {
 
   // Count the number of 0s and 1s by using the sum
-  var zeros = arr.length - sum(arr);
-  var ones = arr.length - zeros;
+  var ones = sum(arr);
+  var zeros = arr.length - ones;
 
+  if (ones === zeros) { return arr.length; }
+
+  if (ones === 0 || zeros === 0) { return 0; }
+
+  if (ones === 1 || zeros === 1) { return 2; }
+
+  var size = arr.length;
+  if (arr.length % 2) { size--; }
+
+  for (var i = size; i >= 2; i -= 2) {
+    for (var j = 0; j < arr.length - i; j++) {
+      var sliced = arr.slice(j, j + i);
+      if (check(sliced)) { return sliced.length; }
+    }
+  }
   
-
 }
 
 var sum = arr => arr.reduce((tot, cur) => tot + cur);
+
+var check = arr => sum(arr) === arr.length / 2;
 
 export default maxBalancedBinarySubarray;
