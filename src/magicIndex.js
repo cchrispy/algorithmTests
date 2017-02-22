@@ -24,18 +24,22 @@ var magicIndex = (arr, start = 0, end) => {
   ********************************************************/
 
 
+  /* Solution with O(log n) time complexity              */
+  /* Works with arrays where every element is distinct   */
+  /*******************************************************/
   var _end = end !== undefined ? end : arr.length - 1;
   var mid = Math.floor((start + _end) / 2);
 
   if (arr[mid] === mid) { return mid; }
   if (start === mid) { return false; }
 
-  if (arr[mid] < mid) {
-    // if the middle element is less than its index, search above
+  if (arr[mid] < mid) { // if the middle element is less than its index, search above
     return magicIndex(arr, mid + 1, _end);
   } else {
     return magicIndex(arr, start, mid - 1);
   }
+  /*******************************************************/
+  /*******************************************************/
 
 }
 
