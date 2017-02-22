@@ -11,6 +11,8 @@
 
 var magicIndex = arr => {
   
+  
+  
 }
 
 export default magicIndex;
