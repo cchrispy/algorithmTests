@@ -19,4 +19,39 @@ var castleOnAGrid = (grid, start, end) => {
 
 }
 
+
+/* Helper function
+**
+** Check if a particular path is allowed or not between two coordinates
+** Horizontal is either 1 or 0 depending on if the attempted path is horizontal or vertical
+*/
+var verifyPath = (grid, horizontal, start, end) => {
+
+  if (horizontal) {
+    var row = start[0];
+    var a = start[1], b = end[1];
+    var range = b - a;
+    var step = range / Math.abs(range);
+    while (a !== b) {
+      if (!grid[row][a]) {
+        return false;
+      }
+      a += step;
+    }
+  } else {
+    var col = start[1];
+    var a = start[0], b = end[0];
+    var range = b - a;
+    var step = range / Math.abs(range);
+    while (a !== b) {
+      if (!grid[a][col]) {
+        return false;
+      }
+      a += step;
+    }
+  }
+  return true;
+
+}
+
 export default castleOnAGrid;
