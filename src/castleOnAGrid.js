@@ -17,6 +17,8 @@
 
 var castleOnAGrid = (grid, start, end) => {
 
+  return verifyPath(grid, 0, start, end);
+
 }
 
 
