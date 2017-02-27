@@ -10,6 +10,9 @@
 
 const permutationsString = (str, res = []) => {
   
+  /*****************************************************************************/
+  /* Solution that does not handle duplicate characters in the original string */
+
   if (!str.length) { // if the string is empty, return the results
     return res;
   }
@@ -32,8 +35,12 @@ const permutationsString = (str, res = []) => {
       }
     })
   }
+  
   // recurse until all letters of the original string is used up, then return the result
   return permutationsString(str.slice(1), res);
+
+  /*****************************************************************************/
+  /*****************************************************************************/
 }
 
 export default permutationsString;
