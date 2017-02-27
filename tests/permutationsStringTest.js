@@ -19,6 +19,13 @@ describe('Permutations String', () => {
     it('Case 2: "abcd"', () => {
       expect(permutationsString('abcd')).to.have.lengthOf(24);
     })
+
+    it('Case 3: "a"', () => {
+      expect(permutationsString('a')).to.have.members(['a']).and.have.lengthOf(1);
+    })
     
+    it('Case 4: "ab"', () => {
+      expect(permutationsString('ab')).to.have.members(['ab', 'ba']).and.have.lengthOf(2);
+    })
   })
 })
