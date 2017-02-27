@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import castleOnAGrid from '../src/castleOnAGrid';
 
-describe('Castle On A Grid', () => {
+xdescribe('Castle On A Grid', () => {
 
   it('Should be a function', () => {
     expect(castleOnAGrid).to.be.a('function');
