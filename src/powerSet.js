@@ -7,7 +7,7 @@
 */
 
 var powerSet = set => {
-
+  
 }
 
 export default powerSet;
