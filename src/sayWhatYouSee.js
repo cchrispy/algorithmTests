@@ -14,7 +14,6 @@ var sayWhatYouSee = arr => {
     var cur = str[0];
     var count = 1;
     while (i < str.length) {
-
       if (str[i + 1] === cur) {
         count++;
       } else {
@@ -23,7 +22,6 @@ var sayWhatYouSee = arr => {
         count = 1;
       }
       i++;
-
     }
     res.push(ans);
   })
