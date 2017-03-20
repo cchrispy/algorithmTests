@@ -7,7 +7,27 @@
 // sayWhatYouSee(['12', '21', '1113']) // -> ['1112', '1211', '3113']
 
 var sayWhatYouSee = arr => {
+  var res = [];
+  arr.forEach(str => {
+    var ans = '';
+    var i = 0;
+    var cur = str[0];
+    var count = 1;
+    while (i < str.length) {
 
+      if (str[i + 1] === cur) {
+        count++;
+      } else {
+        ans += String(count) + cur;
+        cur = str[i + 1];
+        count = 1;
+      }
+      i++;
+
+    }
+    res.push(ans);
+  })
+  return res;
 }
 
 export default sayWhatYouSee;
