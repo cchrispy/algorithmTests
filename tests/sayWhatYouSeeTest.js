@@ -24,9 +24,14 @@ describe('Say What You See', () => {
       expect(solution).to.have.members(['4114', '111213']);
     })
 
-    it('Case4: ["555334"]', () => {
+    it('Case 4: ["555334"]', () => {
       var solution = sayWhatYouSee(["555334"]);
       expect(solution).to.have.members(['352314']);
+    })
+
+    it('Case 5: ["112233", "1", "998"]', () => {
+      var solution = sayWhatYouSee(["112233", "1", "998"]);
+      expect(solution).to.have.members(['212223', '11', '2918']);
     })
 
   })
