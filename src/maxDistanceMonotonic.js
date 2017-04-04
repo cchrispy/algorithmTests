@@ -16,13 +16,17 @@
 */
 
 var maxDistanceMonotonic = arr => {
+
+  /*
+  ** Naive solution with O(n^2) time complexity and O(1) space complexity
+  */
   var max = 0;
 
-  for (var i = 0; i < arr.length; i++) {
+  for (var i = 0; i < arr.length && i + max < arr.length; i++) {
     let n = arr[i];
     var j = arr.length - 1;
     while (max < j - i) {
-      if (arr[i] <= arr[j] && max < j - i) {
+      if (arr[i] <= arr[j]) {
         max = j - i;
       }
       j--;
