@@ -15,8 +15,21 @@
 ** maxDistanceMonotonic(arr); // 3
 */
 
-const maxDistanceMonotonic = arr => {
+var maxDistanceMonotonic = arr => {
+  var max = 0;
 
+  for (var i = 0; i < arr.length; i++) {
+    let n = arr[i];
+    var j = arr.length - 1;
+    while (max < j - i) {
+      if (arr[i] <= arr[j] && max < j - i) {
+        max = j - i;
+      }
+      j--;
+    }
+  }
+
+  return max;
 }
 
 export default maxDistanceMonotonic;
