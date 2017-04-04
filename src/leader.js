@@ -1,6 +1,7 @@
 /*
 ** Given an array of integers, return the index of any element that appears
-** in more than half of the elements in the array.
+** in more than half of the elements in the array. If no element appears more than 
+** half the time, then return -1.
 ** Constraints: Linear time complexity and constant space
 **
 ** EXAMPLE
@@ -9,7 +10,25 @@
 */
 
 var leader = arr => {
-  
+  /*********************************************
+  ** Naive solution: linear time & linear space
+  ** Store values in object and count
+  *********************************************/
+  var obj = {};
+  for (var i = 0; i < arr.length; i++) {
+    if (obj[arr[i]]) {
+      obj[arr[i]]++;
+    } else {
+      obj[arr[i]] = 1;
+    }
+    if (obj[arr[i]] > arr.length / 2) {
+      return i;
+    }
+  }
+  return -1;
+  /********************************************/
+
+
 }
 
 export default leader;
