@@ -28,7 +28,7 @@ var leader = arr => {
   return -1;
   /********************************************/
 
-
+  
 }
 
 export default leader;
