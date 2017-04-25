@@ -11,12 +11,13 @@ var mergeOverlappingIntervals = intervals => {
 
   return intervals.reduce((res, interval) => {
     if (!res.length) {
-      return interval;
+      return [interval];
     }
 
     var last = getLast(res);
     if (interval[0] <= last[1]) {
-      return replaceLast(res, [last[0], interval[1]]);
+      var end = last[1] > interval[1] ? last[1] : interval[1];
+      return replaceLast(res, [last[0], end]);
     } else {
       return res.concat([interval]);
     }
@@ -29,9 +30,7 @@ var getLast = arr => arr[arr.length - 1];
 // replace the last element in an array with something else
 var replaceLast = (arr, item) => {
   arr[arr.length - 1] = item;
+  return arr;
 }
 
-let intervals = [[1, 5], [2, 3], [4, 6], [7, 8], [8, 10], [12, 15]];
-console.log(mergeOverlappingIntervals(intervals));
-
-// export default mergeOverlappingIntervals;
+export default mergeOverlappingIntervals;
